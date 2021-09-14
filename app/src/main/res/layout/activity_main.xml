@@ -15,7 +15,7 @@
         >
 
         <TextView
-            android:id="@+id/users_viev"
+            android:id="@+id/users_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAlignment="textEnd"
@@ -50,7 +50,7 @@
                 android:textSize="40dp" />
 
             <Button
-                android:id="@+id/close_parenthesis__button"
+                android:id="@+id/close_parenthesis_button"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:height="100dp"
@@ -60,7 +60,7 @@
                 android:textSize="40dp" />
 
             <Button
-                android:id="@+id/division"
+                android:id="@+id/division_button"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:height="100dp"
