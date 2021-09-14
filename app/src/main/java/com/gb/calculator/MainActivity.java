@@ -47,20 +47,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setActionsForButtons(List<Button> numbers, List<Button> actions) {
-        oneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userTextView.setText(oneButton.getText().toString());
-            }
-        });
-//        for (Button numberButton: numbers) {
-//            numberButton.setOnClickListener(view -> {
-//                userTextView.append(numberButton.getText().toString());
-//            });
+        for (Button numberButton : numbers) {
+            numberButton.setOnClickListener(view -> {
+                userTextView.append(numberButton.getText().toString());
+            });
         }
-
-
-//    }
+    }
 
     private void initViewsAndSetActions() {
         numbers = new ArrayList<>();
@@ -75,18 +67,17 @@ public class MainActivity extends AppCompatActivity {
         numbers.add(sevenButton = findViewById(R.id.seven_button));
         numbers.add(eightButton = findViewById(R.id.eight_button));
         numbers.add(nineButton = findViewById(R.id.nine_button));
-        Button clearButton = findViewById(R.id.clear_button);
-        Button openParenthesisButton = findViewById(R.id.open_parenthesis__button);
-        Button closeParenthesisButton = findViewById(R.id.close_parenthesis_button);
+        clearButton = findViewById(R.id.clear_button);
+        openParenthesisButton = findViewById(R.id.open_parenthesis__button);
+        closeParenthesisButton = findViewById(R.id.close_parenthesis_button);
         actions.add(divisionButton = findViewById(R.id.division_button));
         actions.add(multiplicationButton = findViewById(R.id.multiplication_button));
         actions.add(subtractionButton = findViewById(R.id.subtraction_button));
         actions.add(additionButton = findViewById(R.id.addition_button));
-        Button toNegativeButton = findViewById(R.id.to_negative_button);
-        Button pointButton = findViewById(R.id.point_button);
-        Button resultButton = findViewById(R.id.result_button);
-        TextView userTextView = findViewById(R.id.users_view);
-
+        toNegativeButton = findViewById(R.id.to_negative_button);
+        pointButton = findViewById(R.id.point_button);
+        resultButton = findViewById(R.id.result_button);
+        userTextView = findViewById(R.id.users_view);
 
 
     }
