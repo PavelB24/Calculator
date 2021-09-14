@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
     Button pointButton;
     Button resultButton;
     TextView userTextView;
+    boolean lastInputIsAction = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewsAndSetActions();
-        setActionsForButtons(numbers, actions);
 
 
     }
@@ -50,8 +50,29 @@ public class MainActivity extends AppCompatActivity {
         for (Button numberButton : numbers) {
             numberButton.setOnClickListener(view -> {
                 userTextView.append(numberButton.getText().toString());
+                lastInputIsAction = false;
             });
         }
+        for (Button actionButton : actions) {
+            actionButton.setOnClickListener(view -> {
+                if (userTextView.getText().toString().isEmpty()) {
+                }
+                else if (lastInputIsAction) {
+                    String temp = userTextView.getText().toString();
+                    temp = temp.substring(0, temp.length() - 1);
+                    userTextView.setText(temp);
+                    userTextView.append(actionButton.getText().toString());
+                } else {
+                    userTextView.append(actionButton.getText().toString());
+                    lastInputIsAction= true;
+                }
+            });
+
+        }
+        clearButton.setOnClickListener(view -> {
+            userTextView.setText("");
+
+        });
     }
 
     private void initViewsAndSetActions() {
@@ -78,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         pointButton = findViewById(R.id.point_button);
         resultButton = findViewById(R.id.result_button);
         userTextView = findViewById(R.id.users_view);
+        setActionsForButtons(numbers, actions);
 
 
     }
