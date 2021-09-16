@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 userTextView.append(multiplicationButton.getText().toString());
                 userTextView.append(openParenthesisButton.getText().toString());
                 parenthesisCounter++;
-                lastInputIsAction=true;
+                lastInputIsAction = true;
             } else {
                 userTextView.append(openParenthesisButton.getText().toString());
                 parenthesisCounter++;
