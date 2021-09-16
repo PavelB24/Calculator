@@ -36,14 +36,15 @@ public class MainActivity extends AppCompatActivity {
     Button resultButton;
     TextView userTextView;
     boolean lastInputIsAction = false;
+    boolean isNegative = false;
+    int parenthesisCounter = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewsAndSetActions();
-
-
     }
 
     private void setActionsForButtons(List<Button> numbers, List<Button> actions) {
@@ -55,23 +56,47 @@ public class MainActivity extends AppCompatActivity {
         }
         for (Button actionButton : actions) {
             actionButton.setOnClickListener(view -> {
-                if (userTextView.getText().toString().isEmpty()) {
-                }
-                else if (lastInputIsAction) {
+                if (userTextView.getText().toString().isEmpty() || (lastInputIsAction && parenthesisCounter > 0)) {
+                    //TODO
+                } else if (lastInputIsAction) {
                     String temp = userTextView.getText().toString();
                     temp = temp.substring(0, temp.length() - 1);
                     userTextView.setText(temp);
                     userTextView.append(actionButton.getText().toString());
                 } else {
                     userTextView.append(actionButton.getText().toString());
-                    lastInputIsAction= true;
+                    lastInputIsAction = true;
                 }
             });
-
         }
+
         clearButton.setOnClickListener(view -> {
             userTextView.setText("");
 
+        });
+        closeParenthesisButton.setOnClickListener(view -> {
+            if (userTextView.getText().toString().isEmpty()) {
+                //TODO
+            }
+            if (!lastInputIsAction) {
+                if (parenthesisCounter > 0) {
+                    userTextView.append(closeParenthesisButton.getText().toString());
+                    parenthesisCounter--;
+                } else {
+                    //TODO
+                }
+            }
+        });
+        openParenthesisButton.setOnClickListener(view -> {
+            if (!userTextView.getText().toString().isEmpty() && (!lastInputIsAction)) {
+                userTextView.append(multiplicationButton.getText().toString());
+                userTextView.append(openParenthesisButton.getText().toString());
+                parenthesisCounter++;
+                lastInputIsAction=true;
+            } else {
+                userTextView.append(openParenthesisButton.getText().toString());
+                parenthesisCounter++;
+            }
         });
     }
 
