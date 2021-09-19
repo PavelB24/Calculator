@@ -1,9 +1,13 @@
 package com.gb.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +16,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
+    final String CALCULATION_KEY= "calculation_key";
     List<Button> numbers;
     List<Button> actions;
     Button zeroButton;
@@ -31,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
     Button multiplicationButton;
     Button subtractionButton;
     Button additionButton;
-    Button toNegativeButton;
     Button pointButton;
     Button resultButton;
     TextView userTextView;
-    boolean lastInputIsAction = false;
-    boolean isNegative = false;
+    boolean lastInputIsAction;
     int parenthesisCounter = 0;
+    boolean pointUsed=false;
+    int pointCounter=0;
+    private static final String TAG= "@@@";
 
 
     @Override
@@ -45,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewsAndSetActions();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CALCULATION_KEY, userTextView.getText().toString());
+    }
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        userTextView.setText(savedInstanceState.getString(CALCULATION_KEY));
+        Log.d(TAG, "Восстановил " + savedInstanceState.getString(CALCULATION_KEY));
     }
 
     private void setActionsForButtons(List<Button> numbers, List<Button> actions) {
@@ -63,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
                     temp = temp.substring(0, temp.length() - 1);
                     userTextView.setText(temp);
                     userTextView.append(actionButton.getText().toString());
+                    pointUsed=false;
                 } else {
                     userTextView.append(actionButton.getText().toString());
                     lastInputIsAction = true;
+                    pointUsed=false;
                 }
             });
         }
@@ -98,6 +118,27 @@ public class MainActivity extends AppCompatActivity {
                 parenthesisCounter++;
             }
         });
+        pointButton.setOnClickListener(view -> {
+            if(!pointUsed){
+            if (lastInputIsAction){
+                userTextView.append(zeroButton.getText().toString());
+                userTextView.append(".");
+                lastInputIsAction=false;
+                pointUsed=true;
+            } else if(userTextView.getText().toString().isEmpty()){
+                //TODO
+                lastInputIsAction=true;
+                pointUsed=true;
+            }
+            else {
+                userTextView.append(".");
+                pointUsed=true;
+            }}
+        });
+        resultButton.setOnClickListener(view -> {
+
+        });
+
     }
 
     private void initViewsAndSetActions() {
@@ -120,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         actions.add(multiplicationButton = findViewById(R.id.multiplication_button));
         actions.add(subtractionButton = findViewById(R.id.subtraction_button));
         actions.add(additionButton = findViewById(R.id.addition_button));
-        toNegativeButton = findViewById(R.id.to_negative_button);
         pointButton = findViewById(R.id.point_button);
         resultButton = findViewById(R.id.result_button);
         userTextView = findViewById(R.id.users_view);
