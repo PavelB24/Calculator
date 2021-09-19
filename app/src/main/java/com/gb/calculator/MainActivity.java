@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
-    final String CALCULATION_KEY= "calculation_key";
+    final String CALCULATION_KEY = "calculation_key";
     List<Button> numbers;
     List<Button> actions;
     Button zeroButton;
@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
     TextView userTextView;
     boolean lastInputIsAction;
     int parenthesisCounter = 0;
-    boolean pointUsed=false;
-    int pointCounter=0;
-    private static final String TAG= "@@@";
+    boolean pointUsed = false;
+    int pointCounter = 0;
+    private static final String TAG = "@@@";
 
 
     @Override
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString(CALCULATION_KEY, userTextView.getText().toString());
     }
+
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -81,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
                     temp = temp.substring(0, temp.length() - 1);
                     userTextView.setText(temp);
                     userTextView.append(actionButton.getText().toString());
-                    pointUsed=false;
+                    pointUsed = false;
                 } else {
                     userTextView.append(actionButton.getText().toString());
                     lastInputIsAction = true;
-                    pointUsed=false;
+                    pointUsed = false;
                 }
             });
         }
@@ -119,21 +120,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         pointButton.setOnClickListener(view -> {
-            if(!pointUsed){
-            if (lastInputIsAction){
-                userTextView.append(zeroButton.getText().toString());
-                userTextView.append(".");
-                lastInputIsAction=false;
-                pointUsed=true;
-            } else if(userTextView.getText().toString().isEmpty()){
-                //TODO
-                lastInputIsAction=true;
-                pointUsed=true;
+            if (!pointUsed) {
+                if (lastInputIsAction) {
+                    userTextView.append(zeroButton.getText().toString());
+                    userTextView.append(".");
+                    lastInputIsAction = false;
+                    pointUsed = true;
+                } else if (userTextView.getText().toString().isEmpty()) {
+                    //TODO
+                    lastInputIsAction = true;
+                    pointUsed = true;
+                } else {
+                    userTextView.append(".");
+                    pointUsed = true;
+                }
             }
-            else {
-                userTextView.append(".");
-                pointUsed=true;
-            }}
         });
         resultButton.setOnClickListener(view -> {
 
