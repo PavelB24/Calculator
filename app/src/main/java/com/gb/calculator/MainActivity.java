@@ -4,19 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     final String CALCULATION_KEY = "calculation_key";
+    Calculator calculator= new Calculator();
     List<Button> numbers;
     List<Button> actions;
     Button zeroButton;
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     boolean lastInputIsAction;
     int parenthesisCounter = 0;
     boolean pointUsed = false;
-    int pointCounter = 0;
+
     private static final String TAG = "@@@";
 
 
@@ -137,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         resultButton.setOnClickListener(view -> {
+            double result=calculator.result(userTextView.getText().toString());
+            userTextView.setText(String.valueOf(result));
+
 
         });
 
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         actions.add(additionButton = findViewById(R.id.addition_button));
         pointButton = findViewById(R.id.point_button);
         resultButton = findViewById(R.id.result_button);
-        userTextView = findViewById(R.id.users_view);
+        userTextView = findViewById(R.id.users_text_view);
         setActionsForButtons(numbers, actions);
 
 
