@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,13 +36,11 @@ public class MainActivity extends AppCompatActivity {
     Button pointButton;
     Button resultButton;
     TextView userTextView;
-    boolean lastIsOpenParenthesis=false;
-    boolean lastIsParenthesis = false;
-    boolean lastInputIsAction=false;
+    boolean lastIsOpenParenthesis = false;
+    boolean lastIsCloseParenthesis = false;
+    boolean lastInputIsAction = false;
     int parenthesisCounter = 0;
     boolean pointUsed = false;
-
-    private static final String TAG = "@@@";
 
 
     @Override
@@ -63,22 +60,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         userTextView.setText(savedInstanceState.getString(CALCULATION_KEY));
-        Log.d(TAG, "Восстановил " + savedInstanceState.getString(CALCULATION_KEY));
     }
 
     private void setActionsForButtons(List<Button> numbers, List<Button> actions) {
         for (Button numberButton : numbers) {
             numberButton.setOnClickListener(view -> {
-                if(lastIsParenthesis){
+                if (lastIsCloseParenthesis) {
                     userTextView.append("*");
                     userTextView.append(numberButton.getText().toString());
-                    lastIsParenthesis= false;
+                    lastIsCloseParenthesis = false;
+                } else {
+                    userTextView.append(numberButton.getText().toString());
+                    lastInputIsAction = false;
                 }
-                else {
-                userTextView.append(numberButton.getText().toString());
-                lastInputIsAction = false;
-                }
-                lastIsOpenParenthesis=false;
+                lastIsOpenParenthesis = false;
             });
         }
         for (Button actionButton : actions) {
@@ -95,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
                     userTextView.append(actionButton.getText().toString());
                     lastInputIsAction = true;
                     pointUsed = false;
-                    lastIsParenthesis = false;
+                    lastIsCloseParenthesis = false;
                 }
 
             });
         }
 
         clearButton.setOnClickListener(view -> {
-             lastIsOpenParenthesis=false;
-             lastIsParenthesis = false;
-             lastInputIsAction= false;
-             parenthesisCounter = 0;
-             pointUsed = false;
+            lastIsOpenParenthesis = false;
+            lastIsCloseParenthesis = false;
+            lastInputIsAction = false;
+            parenthesisCounter = 0;
+            pointUsed = false;
             userTextView.setText("");
 
         });
@@ -117,8 +112,9 @@ public class MainActivity extends AppCompatActivity {
             if (!lastInputIsAction) {
                 if (parenthesisCounter > 0) {
                     userTextView.append(closeParenthesisButton.getText().toString());
-                    lastIsParenthesis = true;
+                    lastIsCloseParenthesis = true;
                     parenthesisCounter--;
+                    pointUsed = false;
                 } else {
                     Toast.makeText(this, "Скобка не открыта", Toast.LENGTH_LONG).show();
                 }
@@ -128,14 +124,15 @@ public class MainActivity extends AppCompatActivity {
             if (!userTextView.getText().toString().isEmpty() && (!lastInputIsAction)) {
                 userTextView.append(multiplicationButton.getText().toString());
                 userTextView.append(openParenthesisButton.getText().toString());
-                lastIsOpenParenthesis=true;
-                lastIsParenthesis = false;
+                lastIsOpenParenthesis = true;
+                lastIsCloseParenthesis = false;
                 parenthesisCounter++;
                 lastInputIsAction = true;
+                pointUsed = false;
             } else {
                 userTextView.append(openParenthesisButton.getText().toString());
-                lastIsOpenParenthesis=true;
-                lastIsParenthesis = false;
+                lastIsOpenParenthesis = true;
+                lastIsCloseParenthesis = false;
                 parenthesisCounter++;
             }
         });
@@ -149,15 +146,17 @@ public class MainActivity extends AppCompatActivity {
                 } else if (userTextView.getText().toString().isEmpty()) {
                     Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show();
                 } else {
-                    if(lastIsOpenParenthesis){
+                    if (lastIsOpenParenthesis) {
                         userTextView.append(zeroButton.getText().toString());
                         userTextView.append(".");
-                        pointUsed=true;
-                        lastIsOpenParenthesis=true;
+                        pointUsed = true;
+                        lastIsOpenParenthesis = true;
+                    } else if (lastIsCloseParenthesis) {
+                        Toast.makeText(this, "Введите число", Toast.LENGTH_LONG).show();
+                    } else {
+                        userTextView.append(".");
+                        pointUsed = true;
                     }
-                    else{
-                    userTextView.append(".");
-                    pointUsed = true;}
                 }
             }
         });
