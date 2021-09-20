@@ -4,45 +4,45 @@ import java.util.Stack;
 
 public class Calculator {
     public String stringToRPN(String expression) {
-        String current = "";
+        StringBuilder current = new StringBuilder();
         Stack<Character> charStack = new Stack<>();
         int priority;
         for (int i = 0; i < expression.length(); i++) {
             priority = getPriority(expression.charAt(i));
             if (priority == 0) {
-                current += expression.charAt(i);
+                current.append(expression.charAt(i));
             }
             if (priority == 1) {
                 charStack.push(expression.charAt(i));
             }
             if (priority > 1) {
-                current += ' ';
+                current.append(' ');
                 while (!charStack.empty()) {
                     if (getPriority(charStack.peek()) >= priority) {
-                        current += charStack.pop();
+                        current.append(charStack.pop());
                     } else break;
                 }
                 charStack.push(expression.charAt(i));
             }
             if (priority == -1) {
-                current += ' ';
+                current.append(' ');
                 while (getPriority(charStack.peek()) != 1) {
-                    current += charStack.pop();
+                    current.append(charStack.pop());
                 }
                 charStack.pop();
             }
         }
         while (!charStack.empty()) {
-            current += charStack.pop();
+            current.append(charStack.pop());
         }
 
 
-        return current;
+        return current.toString();
     }
 
     public double result(String expression) {
         String rpn = stringToRPN(expression);
-        String operand = new String();
+        StringBuilder operand = new StringBuilder();
         Stack<Double> stack = new Stack<>();
         for (int i = 0; i < rpn.length(); i++) {
             if (rpn.charAt(i) == ' ') {
@@ -50,13 +50,13 @@ public class Calculator {
             }
             if (getPriority(rpn.charAt(i)) == 0) {
                 while ((rpn.charAt(i) != ' ' && getPriority(rpn.charAt(i)) == 0)) {
-                    operand += rpn.charAt(i++);
+                    operand.append(rpn.charAt(i++));
                     if (i == rpn.length()) {
                         break;
                     }
                 }
-                stack.push(Double.parseDouble(operand));
-                operand = new String();
+                stack.push(Double.parseDouble(operand.toString()));
+                operand = new StringBuilder();
             } if (getPriority(rpn.charAt(i)) > 1) {
                 double a = stack.pop();
                 double b = stack.pop();
