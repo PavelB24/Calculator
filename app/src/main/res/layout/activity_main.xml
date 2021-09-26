@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    style="@style/main_layout_stile">
+    style="@style/main_layout_stile"
+    tools:context=".MainActivity">
 
     <HorizontalScrollView style="@style/result_scrollview_stile">
+
         <TextView
             android:id="@+id/users_text_view"
             style="@style/result_view_stile" />
