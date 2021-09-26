@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     int parenthesisCounter = 0;
     boolean pointUsed = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
