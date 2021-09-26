@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="result_view_stile">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/result_view_text_size</item>
+    </style>
+
+    <style name="button_stile">
+        <item name="android:layout_marginEnd">@dimen/button_margin_end</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:height">@dimen/button_height</item>
+        <item name="android:background">@color/for_button_black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="button_stile_without_weight">
+        <item name="android:layout_marginEnd">@dimen/button_margin_end</item>
+        <item name="android:height">@dimen/button_height</item>
+        <item name="android:background">@color/for_button_black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="result_scrollview_stile">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layoutDirection">rtl</item>
+    </style>
+
+    <style name="table_layout_stile_for_calc_buttons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="table_row_stile_for_calc_buttons">
+        <item name="android:layout_margin">@dimen/table_row_layout_margin</item>
+    </style>
+
+    <style name="main_layout_stile">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/cuba_sea_nature
+        </item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+</resources>

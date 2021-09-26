@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button multiplicationButton;
     Button subtractionButton;
     Button additionButton;
-    Button pointButton;
+    Button commaButton;
     Button resultButton;
     TextView userTextView;
     boolean lastIsOpenParenthesis = false;
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 parenthesisCounter++;
             }
         });
-        pointButton.setOnClickListener(view -> {
+        commaButton.setOnClickListener(view -> {
             if (!pointUsed) {
                 if (lastInputIsAction) {
                     userTextView.append(zeroButton.getText().toString());
@@ -163,8 +163,6 @@ public class MainActivity extends AppCompatActivity {
         resultButton.setOnClickListener(view -> {
             double result = calculator.result(userTextView.getText().toString());
             userTextView.setText(String.valueOf(result));
-
-
         });
 
     }
@@ -189,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         actions.add(multiplicationButton = findViewById(R.id.multiplication_button));
         actions.add(subtractionButton = findViewById(R.id.subtraction_button));
         actions.add(additionButton = findViewById(R.id.addition_button));
-        pointButton = findViewById(R.id.point_button);
+        commaButton = findViewById(R.id.point_button);
         resultButton = findViewById(R.id.result_button);
         userTextView = findViewById(R.id.users_text_view);
         setActionsForButtons(numbers, actions);
