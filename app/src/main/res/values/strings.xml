@@ -19,4 +19,7 @@
     <string name="button_0_text" translatable="false">0</string>
     <string name="button_comma_text" translatable="false">,</string>
     <string name="button_result_text" translatable="false">=</string>
+    <string name="toast_parenthesis_err" >Parenthesis is not open</string>
+    <string name="toast_theme_light" >Light theme is chosen</string>
+    <string name="toast_theme_dark" >Dark theme is chosen</string>
 </resources>
