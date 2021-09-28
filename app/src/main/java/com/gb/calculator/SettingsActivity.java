@@ -27,21 +27,18 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         themeSelector = findViewById(R.id.theme_selector);
         themeSelector.setChecked(prefs.getBoolean("value", false));
-        themeSelector.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Intent data = new Intent();
-                data.putExtra(KEY, b);
-                if (b) {
-                    Toast.makeText(SettingsActivity.this, R.string.toast_theme_dark, Toast.LENGTH_SHORT).show();
-                    editor.putBoolean("value", true);
-                } else {
-                    Toast.makeText(SettingsActivity.this, R.string.toast_theme_light, Toast.LENGTH_SHORT).show();
-                    editor.putBoolean("value", false);
-                }
-                editor.apply();
-                setResult(Activity.RESULT_OK, data);
+        Intent data = new Intent();
+        themeSelector.setOnCheckedChangeListener((compoundButton, b) -> {
+            data.putExtra(KEY, b);
+            if (b) {
+                Toast.makeText(SettingsActivity.this, R.string.toast_theme_dark, Toast.LENGTH_SHORT).show();
+                editor.putBoolean("value", true);
+            } else {
+                Toast.makeText(SettingsActivity.this, R.string.toast_theme_light, Toast.LENGTH_SHORT).show();
+                editor.putBoolean("value", false);
             }
+            editor.apply();
+            setResult(Activity.RESULT_OK, data);
         });
 
 

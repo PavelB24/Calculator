@@ -4,6 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".SettingsActivity"
+    android:orientation="vertical"
+    android:background="@drawable/lake_still_water_reflection_calm">
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Application Settings"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        app:layout_constraintTop_toTopOf="parent"
+        ></TextView>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/theme_selector"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Light/Dark theme selection"
+        android:textOff="L"
+        android:textOn="D"
+        app:showText="true"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

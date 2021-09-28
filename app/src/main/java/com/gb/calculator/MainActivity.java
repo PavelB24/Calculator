@@ -59,18 +59,17 @@ public class MainActivity extends AppCompatActivity {
             if (Activity.RESULT_OK == result.getResultCode()) {
                 Intent data = result.getData();
                 boolean themeSelectionFlag = data.getBooleanExtra(SettingsActivity.KEY, false);
-                if(themeSelectionFlag){
+                if (themeSelectionFlag) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                else{AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
                 recreate();
 
             }
-            });
+        });
 
-        }
-
+    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -138,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     parenthesisCounter--;
                     pointUsed = false;
                 } else {
-                    Toast.makeText(this, R.string.toast_parenthesis_err, Toast.LENGTH_LONG);
+                    Toast.makeText(this, R.string.toast_parenthesis_err, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -188,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         });
         settingsImageButton.setOnClickListener(view -> {
             Intent openSettings = new Intent(this, SettingsActivity.class);
-            startActivityForResult(openSettings, SettingsActivity.THEME_SELECTOR_KEY);
+            settingsLauncher.launch(openSettings);
         });
 
     }
