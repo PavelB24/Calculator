@@ -5,4 +5,7 @@
     <dimen name="table_row_layout_margin">3dp</dimen>
     <dimen name="result_view_text_size">80sp</dimen>
     <dimen name="button_text_size">40sp</dimen>
+    <dimen name="result_scrollview_height">150dp</dimen>
+    <dimen name="settings_button_height">35dp</dimen>
+    <dimen name="settings_button_width">60dp</dimen>
 </resources>

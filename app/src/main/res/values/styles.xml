@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="result_view_stile">
+    <style name="ResultViewStile">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layoutDirection">ltr</item>
@@ -10,7 +10,7 @@
         <item name="android:textSize">@dimen/result_view_text_size</item>
     </style>
 
-    <style name="button_stile">
+    <style name="ButtonStile">
         <item name="android:layout_marginEnd">@dimen/button_margin_end</item>
         <item name="android:layout_weight">1</item>
         <item name="android:height">@dimen/button_height</item>
@@ -19,7 +19,7 @@
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
-    <style name="button_stile_without_weight">
+    <style name="ButtonStileWithoutWeight">
         <item name="android:layout_marginEnd">@dimen/button_margin_end</item>
         <item name="android:height">@dimen/button_height</item>
         <item name="android:background">@color/for_button_black</item>
@@ -27,22 +27,22 @@
         <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 
-    <style name="result_scrollview_stile">
+    <style name="ResultScrollviewStile">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">195dp</item>
+        <item name="android:layout_height">@dimen/result_scrollview_height</item>
         <item name="android:layoutDirection">rtl</item>
     </style>
 
-    <style name="table_layout_stile_for_calc_buttons">
+    <style name="TableLayoutStileForCalcButtons">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="table_row_stile_for_calc_buttons">
+    <style name="TableRowStileForCalcButtons">
         <item name="android:layout_margin">@dimen/table_row_layout_margin</item>
     </style>
 
-    <style name="main_layout_stile">
+    <style name="MainLayoutStile">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/white_paper_texture_background_blank_mockup_pen
@@ -50,10 +50,19 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="linear_layout_for_horizontal_orientation_stile">
+    <style name="LinearLayoutForHorizontalOrientationStile">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="SettingsButtonStyle">
+        <item name="android:layout_height">@dimen/settings_button_height</item>
+        <item name="android:layout_width">@dimen/settings_button_width</item>
+        <item name="android:contentDescription">TODO</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+    </style>
+
 
 </resources>

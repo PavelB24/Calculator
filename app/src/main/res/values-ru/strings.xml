@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Калькулятор</string>
+    <string name="toast_parenthesis_err" >Скобка не открыта</string>
+    <string name="toast_theme_light" >Выбрана светлая тема</string>
+    <string name="toast_theme_dark" >Выбрана тёмная тема</string>
 </resources>
